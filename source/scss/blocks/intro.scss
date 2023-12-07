@@ -32,6 +32,7 @@
   font-size: 12rem;
   line-height: 0.906;
   letter-spacing: -0.04em;
+  animation: Fade-top .7s ease-out;
 
   @media (min-width: $stop-scaling) {
     max-width: 990px;
@@ -41,14 +42,17 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     max-width: 100%;
     font-size: 3.6rem;
+    animation: Fade-left .4s ease-out;
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
     font-size: 10rem;
+    animation: Fade-top .7s ease-out;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     font-size: 5rem;
+    animation: Fade-left .4s ease-out;
   }
 }
 
@@ -72,6 +76,7 @@
   flex: none;
   width: 50rem;
   max-width: 50%;
+  animation: Fade-left .6s ease-out;
 
   @media (min-width: $stop-scaling) {
     width: 500px;
@@ -93,6 +98,7 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
+  animation: Fade-bottom .4s ease-out;
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -104,6 +110,7 @@
     max-width: 100%;
     font-size: 1.6rem;
     line-height: 1.2;
+    animation: Fade-right .5s ease-out;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
@@ -111,6 +118,7 @@
     max-width: 100%;
     font-size: 1.6rem;
     line-height: 1.2;
+    animation: Fade-right .5s ease-out;
   }
 
   p {
