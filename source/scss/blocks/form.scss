@@ -43,6 +43,21 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+  animation: Appear 2.6s cubic-bezier(.88,-0.11,.35,1.09);
+
+  @keyframes Appear {
+    0% {
+      transform: scale3d(0,1,1);
+      transform-origin: 100% 50%;
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    50% {
+      transform: scale3d(1,1,1);
+    }
+  }
 
   &:focus {
     border: 1px solid $c-purple;
