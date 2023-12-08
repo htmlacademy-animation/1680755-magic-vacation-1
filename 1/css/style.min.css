@@ -1002,7 +1002,7 @@ img {
   overflow: hidden;
 }
 
-@keyframes Fade-top {
+@keyframes FadeInTop {
   0% {
     opacity: 0;
     transform: translateY(-20%);
@@ -1012,7 +1012,7 @@ img {
     transform: translateX(0);
   }
 }
-@keyframes Fade-left {
+@keyframes FadeInLeft {
   0% {
     opacity: 0;
     transform: translateX(-20%);
@@ -1022,7 +1022,7 @@ img {
     transform: translateX(0);
   }
 }
-@keyframes Fade-right {
+@keyframes FadeInRight {
   0% {
     opacity: 0;
     transform: translateX(20%);
@@ -1032,7 +1032,7 @@ img {
     transform: translateX(0);
   }
 }
-@keyframes Fade-bottom {
+@keyframes FadeInBottom {
   0% {
     opacity: 0;
     transform: translateY(30%);
@@ -1040,7 +1040,6 @@ img {
   100% {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.4s;
   }
 }
 .animation-screen {
@@ -1459,6 +1458,7 @@ img {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .form__label {
@@ -1502,19 +1502,12 @@ img {
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: Appear 2.6s cubic-bezier(0.88, -0.11, 0.35, 1.09);
+  animation: FormFieldAppear 1.2s cubic-bezier(0.88, -0.11, 0.35, 1.09);
 }
-@keyframes Appear {
+@keyframes FormFieldAppear {
   0% {
-    transform: scale3d(0, 1, 1);
-    transform-origin: 100% 50%;
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  50% {
-    transform: scale3d(1, 1, 1);
+    width: 0;
+    padding: 0 3rem;
   }
 }
 .form__field:focus {
@@ -1554,9 +1547,6 @@ img {
   }
 }
 
-.form__button {
-  flex-grow: 1;
-}
 @media (orientation: portrait) {
   .form__button {
     position: relative;
@@ -1810,7 +1800,6 @@ img {
   font-size: 12rem;
   line-height: 0.906;
   letter-spacing: -0.04em;
-  animation: Fade-top 0.7s ease-out;
 }
 @media (min-width: 2000px) {
   .intro__title {
@@ -1822,19 +1811,16 @@ img {
   .intro__title {
     max-width: 100%;
     font-size: 3.6rem;
-    animation: Fade-left 0.4s ease-out;
   }
 }
 @media (max-width: 1024px) and (orientation: landscape) {
   .intro__title {
     font-size: 10rem;
-    animation: Fade-top 0.7s ease-out;
   }
 }
 @media (max-width: 768px) and (orientation: landscape) {
   .intro__title {
     font-size: 5rem;
-    animation: Fade-left 0.4s ease-out;
   }
 }
 
@@ -1860,7 +1846,6 @@ img {
   flex: none;
   width: 50rem;
   max-width: 50%;
-  animation: Fade-left 0.6s ease-out;
 }
 @media (min-width: 2000px) {
   .intro__info {
@@ -1885,7 +1870,7 @@ img {
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
-  animation: Fade-bottom 0.4s ease-out;
+  animation: FadeInBottom 0.4s ease-out;
 }
 @media (min-width: 2000px) {
   .intro__message {
@@ -1899,7 +1884,7 @@ img {
     max-width: 100%;
     font-size: 1.6rem;
     line-height: 1.2;
-    animation: Fade-right 0.5s ease-out;
+    animation: FadeInRight 0.5s ease-out;
   }
 }
 @media (max-width: 768px) and (orientation: landscape) {
@@ -1908,7 +1893,7 @@ img {
     max-width: 100%;
     font-size: 1.6rem;
     line-height: 1.2;
-    animation: Fade-right 0.5s ease-out;
+    animation: FadeInRight 0.5s ease-out;
   }
 }
 .intro__message p {
@@ -3634,7 +3619,7 @@ img {
 }
 .slider .swiper-slide > .slider__item-text {
   opacity: 0;
-  transform: translateX(-20%);
+  transform: translateX(20%);
   transition: transform 0.4s ease-out 0.3s, opacity 0.4s ease-out 0.3s;
 }
 .slider .swiper-slide-prev > .slider__item-text {
@@ -3969,6 +3954,9 @@ img {
   height: 4rem;
   color: #5f458c;
   border-radius: 50%;
+  background-color: transparent;
+  outline: none;
+  transition: color 0.18s ease-out;
 }
 .social-block__toggler:focus {
   outline: none;
@@ -3993,9 +3981,8 @@ img {
   height: 100%;
   border-radius: 50%;
   background-color: #ffffff;
-  border: 2px solid #ffffff;
   z-index: -1;
-  transition: color 0.16s ease-in-out, border-color 0.16s ease-in-out, width 0.16s ease-in-out, height 0.16s ease-in-out;
+  transition: color 0.16s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 .social-block__toggler svg {
   position: absolute;
@@ -4006,12 +3993,19 @@ img {
   width: 2.3rem;
   height: 2.2rem;
 }
-.social-block__toggler:hover, .social-block__toggler:focus, .social-block--active .social-block__toggler {
-  color: #a67ee5;
+.social-block__toggler:hover::before {
+  box-shadow: 0 0 0 0.34rem #ffffff;
+  background-color: #ffffff;
 }
-.social-block__toggler:hover::before, .social-block__toggler:focus::before, .social-block--active .social-block__toggler::before {
-  width: 112.5%;
-  height: 112.5%;
+.social-block__toggler:focus {
+  color: #ffffff;
+}
+.social-block__toggler:focus::before {
+  background-color: #a67ee5;
+  box-shadow: none;
+}
+.social-block__toggler:focus:hover::before {
+  box-shadow: 0 0 0 0.34rem #a67ee5;
 }
 .social-block__toggler:hover + .social-block__list, .social-block__toggler:focus + .social-block__list, .social-block--active .social-block__toggler + .social-block__list {
   opacity: 1;
@@ -4026,21 +4020,6 @@ img {
 }
 .social-block__toggler:hover + .social-block__list .social-block__link--vk, .social-block__toggler:focus + .social-block__list .social-block__link--vk, .social-block--active .social-block__toggler + .social-block__list .social-block__link--vk {
   transition-delay: 0.3s;
-}
-.social-block__toggler:focus {
-  outline: none;
-}
-.social-block__toggler:focus::before {
-  border-color: #a67ee5;
-}
-.social-block__toggler:active, .social-block__toggler:active:focus {
-  color: #ffffff;
-}
-.social-block__toggler:active::before, .social-block__toggler:active:focus::before {
-  width: 100%;
-  height: 100%;
-  background-color: #a67ee5;
-  border-color: #a67ee5;
 }
 
 .social-block__list {
@@ -4127,10 +4106,9 @@ img {
   width: 4rem;
   height: 4rem;
   color: #ffffff;
-  border: 2px solid transparent;
   border-radius: 50%;
-  transition: color 0.18s ease-out, border-color 0.12s ease-out, background-color 0.24s ease-out, transform 0.24s ease-out, opacity 0.1s ease-in;
-  transform: translateX(100%);
+  transition: color 0.18s ease-out, background-color 0.24s ease-out, transform 0.24s ease-out, opacity 0.1s ease-in;
+  transform: translateY(-50%);
   opacity: 0;
 }
 @media (min-width: 2000px) {
@@ -4161,13 +4139,11 @@ img {
 .social-block__link:focus {
   color: #a67ee5;
   background-color: #ffffff;
-  border-color: #a67ee5;
   outline: none;
 }
 .social-block__link:active, .social-block__link:active:focus {
   color: #a67ee5;
   background-color: #ffffff;
-  border-color: #ffffff;
 }
 .social-block__link svg {
   position: absolute;
