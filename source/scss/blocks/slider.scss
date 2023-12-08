@@ -11,6 +11,42 @@
       min-height: calc(var(--vh, 1vh) * 100);
     }
   }
+
+  .swiper-slide > .slider__item-text {
+    opacity: 0;
+    transform: translateX(20%);
+    transition: transform .4s ease-out .3s, opacity .4s ease-out .3s;
+  }
+
+  .swiper-slide-prev > .slider__item-text {
+    transition-delay: 0s;
+
+    @media (max-width: $mobile) and (orientation: portrait) {
+      transform: translateX(-20%);
+    }
+  }
+
+
+  .swiper-slide-active > .slider__item-text {
+    opacity: 1;
+    transform: translateX(0);
+
+    @media (max-width: $mobile) and (orientation: portrait) {
+      transition-delay: .2s;
+    }
+  }
+
+  .swiper-slide-next > .slider__item-text {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: .4s;
+
+    @media (max-width: $mobile) and (orientation: portrait) {
+      opacity: 0;
+      transform: translateX(20%);
+      transition-delay: 0s;
+    }
+  }
 }
 
 .slider__item {
