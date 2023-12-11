@@ -35,6 +35,9 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  transform: translateX(-30%);
+  opacity: 0;
+  transition: opacity .4s $appear-ease, transform .4s $appear-ease;
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -130,6 +133,11 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  opacity: 0;
+  transform: translateX(2%);
+  transition:
+    opacity .24s $appear-ease .5s,
+    transform .6s $appear-ease .5s;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;

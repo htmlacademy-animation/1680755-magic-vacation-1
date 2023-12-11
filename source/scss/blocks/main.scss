@@ -1,0 +1,17 @@
+.main {
+  &--is-loaded {
+    .page-header__nav {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .page-header__logo {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .screen__footer {
+      transform: translateX(0);
+    }
+  }
+}
