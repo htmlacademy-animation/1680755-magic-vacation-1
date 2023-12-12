@@ -30,21 +30,27 @@
   }
 
   &::before {
-    @include center;
+    position: absolute;
+    top: 0;
+    left: 0;
     content: "";
     width: 100%;
     height: 100%;
     border-radius: 50%;
     background-color: $c-light;
-    z-index: -1;
+    z-index: 5;
+    transform: scale(0);
     transition:
       color 0.16s ease-in-out,
       box-shadow 0.2s ease-in-out,
-      background-color 0.2s ease-in-out
+      background-color 0.2s ease-in-out,
+      transform 0.45s cubic-bezier(.28,.86,.49,1.37) .2s;
   }
 
   svg {
     @include center;
+    position: absolute;
+    z-index: 5;
     display: block;
     width: 2.3rem;
     height: 2.2rem;
