@@ -37,7 +37,7 @@
   color: $c-light;
   transform: translateX(-30%);
   opacity: 0;
-  transition: opacity .4s $appear-ease, transform .4s $appear-ease;
+  transition: opacity .4s $fast-out-slow-in, transform .4s $fast-out-slow-in;
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -182,7 +182,7 @@
   line-height: 1.0418;
   color: $c-light;
   opacity: 0;
-  transition: opacity .3s $appear-ease .2s;
+  transition: opacity .3s $fast-out-slow-in .2s;
 
   @media (min-width: $stop-scaling) {
     font-size: 12px;

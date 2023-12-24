@@ -1,14 +1,14 @@
 .screen {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  z-index: 1;
   overflow: hidden;
-
-  &--hidden {
-    display: none;
-  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     min-height: calc(var(--vh, 1vh) * 100);
@@ -16,6 +16,106 @@
 
   @media (max-width: $tablet - 1) and (orientation: landscape) {
     height: 100vh;
+  }
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+
+    .screen__footer {
+      transform: translateY(100%) !important;
+      transition-delay: .1s;
+    }
+  }
+
+  &--underlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: $c-dark;
+    transition: transform 0.8s $fast-out-slow-in;
+    transform: translateY(100%);
+  }
+
+  &--prizes.active ~ .screen--underlay {
+    transform: translateY(0);
+  }
+
+  &--prizes {
+    z-index: 3;
+    transition: opacity 0.3s linear;
+  }
+
+  &--story {
+    background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"), url("../img/slide4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    @media (orientation: portrait) {
+      background-size: auto calc(100vh - 13.8rem), 100% 25rem;
+      background-position: top center, bottom center;
+    }
+
+    .screen__footer {
+      transform: translateY(100%);
+    }
+  }
+
+  &--game {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: -8.5rem;
+      bottom: 0;
+      width: 32.7rem;
+      height: 36.9rem;
+      background-image: url("../img/sonya.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      @include retina {
+        background-image: url("../img/sonya@2x.png");
+      }
+
+      @media (min-width: $stop-scaling) {
+        right: -85px;
+        width: 327px;
+        height: 369px;
+      }
+
+      @media (max-width: $tablet) and (orientation: portrait) {
+        opacity: 0;
+      }
+    }
+
+    .screen__footer {
+      transform: translateY(100%);
+    }
+  }
+
+  &--result {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+
+    &.screen--show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &--rules {
+    background-color: $c-dark;
   }
 }
 
@@ -47,7 +147,7 @@
   background-color: $c-light;
   transform: translateY(100%);
   z-index: 1;
-  transition: transform .5s $appear-ease .9s;
+  transition: transform .5s $fast-out-slow-in .9s;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
@@ -288,71 +388,4 @@
       }
     }
   }
-}
-
-.screen--story {
-  background-color: $c-dark;
-  background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"), url("../img/slide4.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  @media (orientation: portrait) {
-    background-size: auto calc(100vh - 13.8rem), 100% 25rem;
-    background-position: top center, bottom center;
-  }
-}
-
-.screen--prizes {
-  background-color: $c-dark;
-}
-
-.screen--game {
-  position: relative;
-  background-color: $c-dark;
-
-  &::before {
-    content: "";
-    position: absolute;
-    right: -8.5rem;
-    bottom: 0;
-    width: 32.7rem;
-    height: 36.9rem;
-    background-image: url("../img/sonya.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    @include retina {
-      background-image: url("../img/sonya@2x.png");
-    }
-
-    @media (min-width: $stop-scaling) {
-      right: -85px;
-      width: 327px;
-      height: 369px;
-    }
-
-    @media (max-width: $tablet) and (orientation: portrait) {
-      opacity: 0;
-    }
-  }
-}
-
-.screen--result {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: $c-dark;
-  opacity: 0;
-  pointer-events: none;
-
-  &.screen--show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-.screen--rules {
-  background-color: $c-dark;
 }
